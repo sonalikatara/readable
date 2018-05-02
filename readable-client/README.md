@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and [Material UI](https://material-ui-next.com/).
+
+Icons made by [DinosoftLabs](https://www.flaticon.com/authors/dinosoftlabs) from [[https://www.flaticon.com/](www.flaticon.com) is licensed by [http://creativecommons.org/licenses/by/3.0/](Creative Commons BY 3.0) </div>
+        
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).

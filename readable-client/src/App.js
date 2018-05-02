@@ -1,17 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {Route} from 'react-router-dom'
+import './App.css'
+import 'typeface-roboto'
+import AppHeader from './AppHeader'
+import Home from './Home'
+import Category from './Category'
+import PostDetails from './PostDetails'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+      <AppHeader />
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          A content and comment management system <code>Catagories</code>.
+        </p>
+        <p>
+        <Route exact path="/" component={Home} />
+        <Route path="/Category" component={Category} />
+        <Route path="/PostDetails" component={PostDetails} />
         </p>
       </div>
     );

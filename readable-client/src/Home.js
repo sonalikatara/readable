@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Grid from 'material-ui/Grid'
 import styled from 'styled-components'
+import CreatePost from './CreatePost'
 
 const Container = styled(Grid)`
 && {
@@ -13,7 +14,10 @@ class Home extends Component {
     render(){
         return(
             <Container>
-                <p>Readable Home Page </p>
+            <span>
+
+                <CreatePost></CreatePost>
+              </span>
             </Container>
         )
     }

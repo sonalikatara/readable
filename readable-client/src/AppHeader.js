@@ -22,7 +22,7 @@ class AppHeader extends Component {
         return(
             <AppBar position="static">
             <Toolbar>
-              <IconButton color="contrast"  aria-label="Menu">
+              <IconButton color="secondary"  aria-label="Menu">
                 <MenuIcon />
               </IconButton>
               <Title variant="title" color="inherit" >

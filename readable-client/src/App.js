@@ -15,11 +15,11 @@ class App extends Component {
         <p className="App-intro">
           A content and comment management system <code>Catagories</code>.
         </p>
-        <p>
+
         <Route exact path="/" component={Home} />
         <Route path="/Category" component={Category} />
         <Route path="/PostDetails" component={PostDetails} />
-        </p>
+
       </div>
     );
   }

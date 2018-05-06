@@ -6,7 +6,7 @@ import Typography from 'material-ui/Typography'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import styled from 'styled-components'
-import logo from './images/logo.svg'
+import logo from '../images/logo.svg'
 
 /* App Header with logo, title and navigation-menu */
 

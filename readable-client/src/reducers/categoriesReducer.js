@@ -2,7 +2,7 @@ import {
     GET_ALL_CATEGORIES,
 } from '../actions'
 
-export function categoriesReducer(state={ categories: [] }, action){
+export default function categoriesReducer(state={ categories: [] }, action){
 
   switch (action.type){
     case GET_ALL_CATEGORIES:

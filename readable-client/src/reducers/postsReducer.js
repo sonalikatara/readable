@@ -1,12 +1,12 @@
 import {
-    ADD_POST,
+    ADD_NEW_POST,
     GET_ALL_POSTS,
 } from '../actions'
 
 function posts(state=initialPostsState, action){
 
 switch (action.type){
-    case ADD_POST :
+    case ADD_NEW_POST :
       return {
         ...state,
         posts : action.post,

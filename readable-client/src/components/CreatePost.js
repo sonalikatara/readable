@@ -46,10 +46,9 @@ class CreatePost extends Component {
                   <PostTitle id='txtPostTitle'
                     placeholder='Title'
                     fullWidth
-                    gutterBottom
                     theme={theme}>
                   </PostTitle>
-                  <PostFormControl theme={theme} fullWidth gutterBottom >
+                  <PostFormControl theme={theme} fullWidth  >
                   <InputLabel htmlFor="postCategory"  >Post Category </InputLabel>
                    <Select native defaultValue={30} input={<Input id="postCategory" />}>
                     <option value="" />

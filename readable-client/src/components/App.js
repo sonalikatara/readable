@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Route} from 'react-router-dom'
+import { connect } from 'react-redux'
 import '../App.css'
 import 'typeface-roboto'
 import AppHeader from './AppHeader'
@@ -9,6 +10,7 @@ import PostDetails from './PostDetails'
 
 class App extends Component {
   render() {
+    console.log("Props : "+ JSON.stringify(this.props))
     return (
       <div className="App">
       <AppHeader />
@@ -25,4 +27,10 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps (posts){
+  return {
+    body: "test post"
+  }
+}
+
+export default connect(mapStateToProps)(App);

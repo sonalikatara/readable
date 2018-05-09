@@ -1,4 +1,5 @@
 
+import * as PostsAPI from "../PostsAPI"
 export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES"
 export const GET_ALL_POSTS = "GET_ALL_POSTS"
 export const GET_ALL_COMMENTS = "GET_ALL_COMMENTS"
@@ -18,6 +19,13 @@ export const DOWNVOTE_POST = "DOWNVOTE_POST"
 
 export const UPVOTE_COMMENT = "UPVOTE_COMMENT"
 export const DOWNVOTE_COMMENT = "DOWNVOTE_COMMENT"
+
+
+/* post */
+/* fetch all posts
+export const fetchAllPosts = () => dispatch => (
+  PostsAPI.getAllPosts().then((posts) => dispatch(receiveAllPosts(posts)))
+)*/
 
 export function addPost ({
  post

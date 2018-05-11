@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Route} from 'react-router-dom'
-import { connect } from 'react-redux'
+//import { connect } from 'react-redux'
 import '../App.css'
 import 'typeface-roboto'
 import AppHeader from './AppHeader'
@@ -17,8 +17,9 @@ class App extends Component {
         <p className="App-intro">
           A content and comment management system <code>Catagories</code>.
         </p>
-
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" render={props => (
+                        <Home {...props}  />
+                    )} />
         <Route path="/Category" component={Category} />
         <Route path="/PostDetails" component={PostDetails} />
 
@@ -27,10 +28,6 @@ class App extends Component {
   }
 }
 
-function mapStateToProps (posts){
-  return {
-    body: "test post"
-  }
-}
 
-export default connect(mapStateToProps)(App);
+
+export default App

@@ -1,9 +1,9 @@
 import {
     ADD_NEW_POST,
     GET_ALL_POSTS,
-} from '../actions'
+} from '../actions/PostActions'
 
-function posts(state=initialPostsState, action){
+function postsReducer(state=initialPostsState, action){
 
 switch (action.type){
     case ADD_NEW_POST :
@@ -14,6 +14,7 @@ switch (action.type){
 
     case GET_ALL_POSTS:
       return{
+        ...state,
         posts: action.posts
       }
     default :
@@ -26,4 +27,4 @@ const initialPostsState ={
   posts: []
 }
 
-export default posts
+export default postsReducer

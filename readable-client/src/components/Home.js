@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Grid from 'material-ui/Grid'
 import styled from 'styled-components'
-import CreatePost from './CreatePost'
+//import CreatePost from './CreatePost'
+import AllPosts from './AllPosts'
 
 const Container = styled(Grid)`
 && {
@@ -16,7 +17,8 @@ class Home extends Component {
             <Container>
             <span>
 
-                <CreatePost></CreatePost>
+                Show all posts
+                <AllPosts posts={this.props.posts} />
               </span>
             </Container>
         )

@@ -2,8 +2,15 @@ import React, { Component } from 'react'
 
 class PostDetails extends Component{
     render(){
+      const { post } = this.props
         return(
-            <div> Post Details Page </div>
+            <div>
+                {post.title}
+                <title>{post.author}</title>
+                <p>
+                  {post.body}
+                </p>
+             </div>
         )
     }
 }

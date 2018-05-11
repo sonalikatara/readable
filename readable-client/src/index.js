@@ -8,9 +8,11 @@ import App from './components/App'
 import registerServiceWorker from './registerServiceWorker'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import {fetchAllPosts} from './actions/PostActions'
 
+//import { fetchAllPosts } from './PostsAPI';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__ || compose
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = createStore(
   reducer,
@@ -19,7 +21,9 @@ const store = createStore(
   )
 )
 
-console.log("store = " + JSON.stringify(store))
+store.dispatch(fetchAllPosts())
+
+//console.log("store = " + JSON.stringify(store))
 
 ReactDOM.render(
       <Provider store={store}>

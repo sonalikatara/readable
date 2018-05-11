@@ -27,9 +27,7 @@ class AllPosts extends Component{
           <div>
           {posts.map((post)=>(
             <div key={post.id}>
-              <p>
                 <PostDetails post ={post} />
-              </p>
             </div>
           ))}
           </div>

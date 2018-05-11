@@ -16,8 +16,6 @@ class Home extends Component {
         return(
             <Container>
             <span>
-
-                Show all posts
                 <AllPosts posts={this.props.posts} />
               </span>
             </Container>

@@ -14,9 +14,6 @@ class App extends Component {
     return (
       <div className="App">
       <AppHeader />
-        <p className="App-intro">
-          A content and comment management system <code>Catagories</code>.
-        </p>
         <Route exact path="/" render={props => (
                         <Home {...props}  />
                     )} />

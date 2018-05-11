@@ -25,7 +25,6 @@ class AllPosts extends Component{
         const posts   = this.props.posts
         return(
           <div>
-          <h2>All Posts </h2>
           {posts.map((post)=>(
             <div key={post.id}>
               <p>

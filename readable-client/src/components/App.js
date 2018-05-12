@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 //import { connect } from 'react-redux'
 import '../App.css'
 import 'typeface-roboto'
@@ -7,6 +7,7 @@ import AppHeader from './AppHeader'
 import Home from './Home'
 import Category from './Category'
 import PostDetails from './PostDetails'
+import NotFound from './NotFound'
 
 class App extends Component {
   render() {
@@ -14,12 +15,16 @@ class App extends Component {
     return (
       <div className="App">
       <AppHeader />
+      <Switch>
         <Route exact path="/" render={props => (
                         <Home {...props}  />
                     )} />
-        <Route path="/Category" component={Category} />
+       {/* <Route path="/Category" render = { props => (
+                      <Category {...props} />
+                    )} /> */}
         <Route path="/PostDetails" component={PostDetails} />
-
+        <Route path="*" component={NotFound} />
+      </Switch>
       </div>
     );
   }

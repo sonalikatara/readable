@@ -1,7 +1,5 @@
 
 
-export const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES"
-
 export const GET_ALL_COMMENTS = "GET_ALL_COMMENTS"
 
 export const ADD_NEW_COMMENT  = 'ADD_NEW_COMMENT'

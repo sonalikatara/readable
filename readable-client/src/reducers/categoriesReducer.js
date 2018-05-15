@@ -1,6 +1,6 @@
 import {
     GET_ALL_CATEGORIES,
-} from '../actions/CategoryActions'
+} from '../actions/types'
 
 export default function categoriesReducer(state={ categories: [] }, action){
 

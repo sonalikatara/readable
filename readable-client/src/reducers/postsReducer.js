@@ -1,7 +1,7 @@
 import {
     ADD_NEW_POST,
     GET_ALL_POSTS,
-} from '../actions/PostActions'
+} from '../actions/types'
 
 function postsReducer(state=initialPostsState, action){
 

@@ -6,21 +6,29 @@ import Tabs, { Tab } from 'material-ui/Tabs'
 
 
 class ShowCategories extends Component {
+  state = {
+    value: 0,
+  };
+
+  handleChange = (event, value) => {
+    this.setState({ value })
+  };
 
   render(){
-    const categories   = this.props.categories
-    const { selectedIndex: i } = this.props
+    const { value } = this.state
+    const { categories} = this.props
     return(
        <div>
        <br/>
             <Tabs
-                value={i}
+                value={value}
                 indicatorColor="primary"
-                textColor="secondary"
+                textColor="primary"
+                onChange={this.handleChange}
             >
-              <Tab label="ALL" />
+              <Tab label="ALL" key="all" />
               {categories.map((category)=>(
-                <Tab label={category.name}>
+                <Tab key={category.path} label={category.name}>
                 </Tab>
               ))}
 

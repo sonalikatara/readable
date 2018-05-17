@@ -2,7 +2,6 @@ import {
     ADD_NEW_POST,
     REQUEST_POSTS,
     RECEIVE_POSTS,
-    GET_ALL_POSTS,
 } from '../actions/types'
 
 function postsReducer(state=initialPostsState, action){
@@ -26,11 +25,6 @@ switch (action.type){
         posts : action.post,
       }
 
-    case GET_ALL_POSTS:
-      return{
-        ...state,
-        posts: action.posts
-      }
     default :
         return state
     }

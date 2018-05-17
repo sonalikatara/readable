@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import {connect } from 'react-redux'
+import { fetchAllCategories } from '../PostsAPI';
+
 
 class ShowCategories extends Component {
   state = {
     categories : this.props.categories
   }
-  const { categories} = this.props
+
+   componentWillMount(){
+    const {dispatch, categories} = this.props
+      dispatch(fetchAllCategories(categories))
+  }
+
 
   render(){
+    const categories   = this.state.categories
     return(
        <div>
 
@@ -16,4 +24,10 @@ class ShowCategories extends Component {
   }
 }
 
-export default ShowCategories
+function mapStateToProps (state, ownProps){
+ return {
+   categories: state.categories
+ }
+}
+
+export default connect(mapStateToProps)(ShowCategories)

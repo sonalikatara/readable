@@ -1,15 +1,10 @@
 
 import * as PostsAPI from "../PostsAPI"
-import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_POSTS, GET_ALL_POSTS, ADD_NEW_POST} from "./types"
+import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_POSTS,  ADD_NEW_POST} from "./types"
 
 /* POSTS */
 /* fetch all posts */
 /* an action creator that returns an object, with the type key of GET_ALL_POSTS along with a posts payload */
-/*export const getAllPosts = posts => ({
-  type: GET_ALL_POSTS,
-  posts
-})
-*/
 
 export const requestPosts = posts => ({
   type: REQUEST_POSTS,

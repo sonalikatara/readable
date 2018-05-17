@@ -3,7 +3,7 @@ import Grid from 'material-ui/Grid'
 import styled from 'styled-components'
 //import CreatePost from './CreatePost'
 import AllPosts from './AllPosts'
-//import ShowCategories from './ShowCategories'
+import ShowCategories from './ShowCategories'
 
 const Container = styled(Grid)`
 && {
@@ -17,7 +17,7 @@ class Home extends Component {
         return(
             <Container>
             <span>
-                {/*<ShowCategories  />*/}
+                {/*<ShowCategories />*/}
                 <AllPosts  />
               </span>
             </Container>

@@ -6,7 +6,7 @@ import {fetchAllPosts} from '../actions/PostActions'
 class AllPosts extends Component{
 
     state = {
-      posts : this.props.post
+      posts : this.props.posts
     }
 
     componentDidMount(){

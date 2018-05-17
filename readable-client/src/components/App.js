@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import {Route, Switch} from 'react-router-dom'
-//import { connect } from 'react-redux'
 import '../App.css'
 import 'typeface-roboto'
 import AppHeader from './AppHeader'
 import Home from './Home'
-import Category from './Category'
+//import Category from './Category'
 import PostDetails from './PostDetails'
 import NotFound from './NotFound'
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect } from 'react-redux'
 import PostDetails from './PostDetails'
+import {fetchAllPosts} from '../actions/PostActions'
 
 class AllPosts extends Component{
 
@@ -8,7 +9,12 @@ class AllPosts extends Component{
       posts : this.props.post
     }
 
-    componentWillMount() {
+    componentDidMount(){
+      const {dispatch, posts} = this.props
+      dispatch(fetchAllPosts(posts))
+    }
+
+   /* componentWillMount() {
       this.setState({posts: this.props.posts})
     }
 
@@ -21,6 +27,7 @@ class AllPosts extends Component{
           })
         }
     }
+    */
     render(){
         const posts   = this.props.posts
         return(

@@ -1,21 +1,4 @@
-
-
-export const GET_ALL_COMMENTS = "GET_ALL_COMMENTS"
-
-export const ADD_NEW_COMMENT  = 'ADD_NEW_COMMENT'
-
-export const EDIT_COMMENT = "EDIT_COMMENT"
-
-
-export const DELETE_COMMENT = "DELETE_COMMENT"
-
-
-
-export const UPVOTE_COMMENT = "UPVOTE_COMMENT"
-export const DOWNVOTE_COMMENT = "DOWNVOTE_COMMENT"
-
-
-
+import {ADD_NEW_COMMENT} from "./types"
 
 export function addComment({
   comment

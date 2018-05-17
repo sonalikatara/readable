@@ -17,8 +17,8 @@ class Home extends Component {
         return(
             <Container>
             <span>
-                {/*<ShowCategories ShowCategories= {this.props.categories} />*/}
-                <AllPosts posts={this.props.posts} />
+                {/*<ShowCategories  />*/}
+                <AllPosts  />
               </span>
             </Container>
         )

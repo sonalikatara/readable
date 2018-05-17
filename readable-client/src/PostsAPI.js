@@ -15,11 +15,18 @@ export const fetchAllCategories = () =>
     fetch(`${api}/categories`, { headers })
       .then(res => res.json())
       .then(data => data.categories)
+      .catch(error => {
+        return error
+      })
+
 
 // Get all Posts
 export const fetchAllPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
+    .catch(error => {
+      return error
+    })
 
 //Get a single post by id
 export const getPost = (postId) =>

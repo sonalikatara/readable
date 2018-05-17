@@ -1,33 +1,34 @@
 import React, { Component } from 'react'
-import {connect } from 'react-redux'
-import { fetchAllCategories } from '../PostsAPI';
+import Paper from 'material-ui/Paper'
+import Tabs, { Tab } from 'material-ui/Tabs'
+//import Typography from 'material-ui/Typography'
+//import styled from 'styled-components'
 
 
 class ShowCategories extends Component {
-  state = {
-    categories : this.props.categories
-  }
-
-   componentWillMount(){
-    const {dispatch, categories} = this.props
-      dispatch(fetchAllCategories(categories))
-  }
-
 
   render(){
-    const categories   = this.state.categories
+    const categories   = this.props.categories
+    const { selectedIndex: i } = this.props
     return(
        <div>
+       <br/>
+            <Tabs
+                value={i}
+                indicatorColor="primary"
+                textColor="secondary"
+            >
+              <Tab label="ALL" />
+              {categories.map((category)=>(
+                <Tab label={category.name}>
+                </Tab>
+              ))}
+
+            </Tabs>
 
        </div>
     )
   }
 }
 
-function mapStateToProps (state, ownProps){
- return {
-   categories: state.categories
- }
-}
-
-export default connect(mapStateToProps)(ShowCategories)
+export default ShowCategories

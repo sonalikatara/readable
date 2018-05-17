@@ -14,6 +14,10 @@ export const receiveCategories = categories => ({
 export const fetchAllCategories = () => dispatch => (
   PostsAPI.fetchAllCategories()
   .then((categories)=>dispatch(receiveCategories(categories)))
+  .catch(error => {
+    return error
+  })
+
 )
 
 

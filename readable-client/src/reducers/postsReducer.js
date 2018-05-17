@@ -8,14 +8,12 @@ function postsReducer(state=initialPostsState, action){
 switch (action.type){
     case REQUEST_POSTS:
     return {
-        ...state,
-        isFetching: true
+        ...state
     }
 
     case RECEIVE_POSTS:
     return{
       ...state,
-      isFetching: false,
       posts: action.posts,
     }
 
@@ -32,7 +30,6 @@ switch (action.type){
 
 
 const initialPostsState ={
-  isFetching: false,
   posts: []
 }
 

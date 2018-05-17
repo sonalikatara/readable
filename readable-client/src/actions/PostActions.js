@@ -31,6 +31,9 @@ export const fetchAllPosts = () => dispatch => (
   PostsAPI
       .fetchAllPosts()
       .then((posts) => dispatch(receivePosts(posts)))
+      .catch(error => {
+        throw(error)
+      })
 )
 
 export function addPost ({

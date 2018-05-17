@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {connect } from 'react-redux'
+import {bindActionCreators} from 'redux';
 import PostDetails from './PostDetails'
-import {fetchAllPosts} from '../actions/PostActions'
+import * as actions from '../actions/PostActions'
 
 class AllPosts extends Component{
 
@@ -10,8 +11,7 @@ class AllPosts extends Component{
     }
 
     componentDidMount(){
-      const {dispatch, posts} = this.props
-      dispatch(fetchAllPosts(posts))
+      const { posts} = this.props.actions.fetchAllPosts()
     }
 
    /* componentWillMount() {
@@ -47,4 +47,9 @@ function mapStateToProps(state, ownProps){
      posts : state.postsReducer.posts
    }
 }
-export default connect(mapStateToProps)(AllPosts)
+
+function mapDispatchToProps(dispatch) {
+  return {actions: bindActionCreators(actions, dispatch)}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllPosts)

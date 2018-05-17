@@ -9,14 +9,12 @@ function categoriesReducer(state= initiaCategoriesState, action){
 
     case REQUEST_CATEGORIES:
             return {
-              ...state,
-              isFetching: true,
+              ...state
             }
 
     case RECEIVE_CATEGORIES:
             return {
               ...state,
-              isFetching: false,
               categories: action.categories
             }
 
@@ -27,7 +25,6 @@ function categoriesReducer(state= initiaCategoriesState, action){
 
 
 const initiaCategoriesState = {
-  isFetching : false,
   categories : []
 }
 

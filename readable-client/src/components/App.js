@@ -7,6 +7,7 @@ import Home from './Home'
 //import Category from './Category'
 import PostDetails from './PostDetails'
 import NotFound from './NotFound'
+import CreatePost from './CreatePost';
 
 class App extends Component {
   render() {
@@ -18,9 +19,10 @@ class App extends Component {
         <Route exact path="/" render={props => (
                         <Home {...props}  />
                     )} />
-       {/* <Route path="/Category" render = { props => (
-                      <Category {...props} />
-                    )} /> */}
+        <Route path="/Category/:categoryPath" render = { props => (
+                      <Home {...props}  />
+                    )} />
+        <Route path="/createPost" component={CreatePost} />
         <Route path="/PostDetails" component={PostDetails} />
         <Route path="*" component={NotFound} />
       </Switch>

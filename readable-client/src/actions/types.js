@@ -1,7 +1,7 @@
 export const REQUEST_POSTS = "REQUEST_POSTS"
 export const RECEIVE_POSTS = "RECEIVE_POSTS"
 export const INVALIDATE_POSTS = "INVALIDATE_POSTS"
-export const ADD_NEW_POST = "ADD_NEW_POST"
+export const CREATE_POST = "CREATE_POST"
 export const DELETE_POST = "DELETE_POST"
 export const EDIT_POST = "EDIT_POST"
 export const UPVOTE_POST = "UPVOTE_POST"

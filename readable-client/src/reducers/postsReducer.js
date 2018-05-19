@@ -1,11 +1,13 @@
 import {
-    ADD_NEW_POST,
+    CREATE_POST,
     REQUEST_POSTS,
     RECEIVE_POSTS,
 } from '../actions/types'
 
 function postsReducer(state=initialPostsState, action){
-switch (action.type){
+  var updatedPosts = []
+
+  switch (action.type){
     case REQUEST_POSTS:
     return {
         ...state
@@ -17,10 +19,12 @@ switch (action.type){
       posts: action.posts,
     }
 
-    case ADD_NEW_POST :
+    case CREATE_POST :
+      updatedPosts = state.posts
+      updatedPosts.push(action.post)
       return {
         ...state,
-        posts : action.post,
+        posts : updatedPosts
       }
 
     default :

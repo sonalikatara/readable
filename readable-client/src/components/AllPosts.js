@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {connect } from 'react-redux'
-import {bindActionCreators} from 'redux';
+import {bindActionCreators} from 'redux'
 import PostDetails from './PostDetails'
 import * as actions from '../actions/PostActions'
 
@@ -11,7 +11,7 @@ class AllPosts extends Component{
     }
 
     componentDidMount(){
-      const { posts} = this.props.actions.fetchAllPosts()
+      this.setState({ posts : this.props.actions.fetchAllPosts()})
     }
 
    /* componentWillMount() {
@@ -29,9 +29,11 @@ class AllPosts extends Component{
     }
     */
     render(){
-        const posts   = this.props.posts
+        const { posts }  = this.props
+
         return(
           <div>
+          Category :
           {posts.map((post)=>(
             <div key={post.id}>
                 <PostDetails post ={post} />

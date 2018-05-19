@@ -1,6 +1,6 @@
 
 import * as PostsAPI from "../PostsAPI"
-import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_POSTS,  ADD_NEW_POST} from "./types"
+import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_POSTS,  CREATE_POST} from "./types"
 
 /* POSTS */
 /* fetch all posts */
@@ -36,12 +36,17 @@ export const fetchAllPosts = () => dispatch => (
       })
 )
 
-export function addPost ({
- post
-}
-){
-  return {
-    type: ADD_NEW_POST,
-   post
-  }
-}
+export const createPost = post => dispatch => (
+   PostsAPI
+   .createPost(post)
+   .then((post) => dispatch(postCreated(post)))
+   .catch(error => {
+    throw(error)
+  })
+
+)
+
+export const postCreated = post => ({
+  type: CREATE_POST,
+  post
+})

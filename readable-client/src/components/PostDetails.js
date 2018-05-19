@@ -28,7 +28,8 @@ const PostBody =styled(Typography)`
 `
 class PostDetails extends Component{
     render(){
-      const { post } = this.props
+      const { post} = this.props
+
       const createdAt = formatDate(post.timestamp)
         return(
             <span>

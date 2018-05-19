@@ -13,10 +13,11 @@ const Container = styled(Grid)`
 
 class Home extends Component {
     render(){
+       var {props} = this.props
         return(
             <Container>
             <span>
-                <AllPosts  />
+                <AllPosts  {...props}/>
               </span>
             </Container>
         )

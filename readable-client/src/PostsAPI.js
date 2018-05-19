@@ -40,14 +40,14 @@ export const getPostComments = (postId) =>
         .then(res => res.json())
 
 //Create a new post
-export const createPost = (body) =>
+export const createPost = (post) =>
     fetch(`${api}/posts`, {
         method: 'POST',
         headers: {
             ...headers,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(body)
+        body: JSON.stringify(post)
     }).then(res => res.json())
 
 //Edit a post

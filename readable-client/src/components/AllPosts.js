@@ -29,12 +29,14 @@ class AllPosts extends Component{
     }
     */
     render(){
-        const { posts }  = this.props
-
+        const { posts, showcategory }  = this.props
+        var mycategory = showcategory?showcategory:"ALL"
+        var showPosts = (mycategory!=="ALL")?posts.filter((p) => p.category === mycategory):posts
         return(
           <div>
-          Category :
-          {posts.map((post)=>(
+          <br/>
+         {mycategory.toUpperCase()} Blogs
+          {showPosts.map((post)=>(
             <div key={post.id}>
                 <PostDetails post ={post} />
             </div>
@@ -46,7 +48,7 @@ class AllPosts extends Component{
 
 function mapStateToProps(state, ownProps){
    return{
-     posts : state.postsReducer.posts
+     posts : state.postsReducer.posts,
    }
 }
 

@@ -3,6 +3,7 @@ import Grid from 'material-ui/Grid'
 import styled from 'styled-components'
 //import CreatePost from './CreatePost'
 import AllPosts from './AllPosts'
+import { connect } from 'react-redux'
 
 const Container = styled(Grid)`
 && {
@@ -13,15 +14,21 @@ const Container = styled(Grid)`
 
 class Home extends Component {
     render(){
-       var {props} = this.props
+       var {showcategory, props} = this.props
         return(
             <Container>
             <span>
-                <AllPosts  {...props}/>
+                <AllPosts  {...props} showcategory={showcategory} />
               </span>
             </Container>
         )
     }
 }
 
-export default Home;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    showcategory : ownProps.match.params.showcategory
+  }
+}
+
+export default connect (mapStateToProps)(Home);

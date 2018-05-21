@@ -19,7 +19,7 @@ class App extends Component {
         <Route exact path="/" render={props => (
                         <Home {...props}  />
                     )} />
-        <Route path="/Category/:categoryPath" render = { props => (
+        <Route exact path="/Category/:showcategory" render = { props => (
                       <Home {...props}  />
                     )} />
         <Route path="/createPost" component={CreatePost} />
@@ -30,7 +30,5 @@ class App extends Component {
     );
   }
 }
-
-
 
 export default App

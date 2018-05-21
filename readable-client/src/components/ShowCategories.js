@@ -10,7 +10,7 @@ class ShowCategories extends Component {
        <br/>
           <Button href="/"  color="inherit"> ALL </Button>
           {categories.map((category)=>(
-            <Button color="secondary" href={'/category/'+ category.path} key={category.path}> {category.name} </Button>
+            <Button color="secondary" href={'/category/'+ category.path} key={category.path} showcategory = {category.path}> {category.name} </Button>
           ))}
        </div>
     )

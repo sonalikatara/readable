@@ -1,6 +1,6 @@
 
 import * as PostsAPI from "../PostsAPI"
-import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_POSTS,  CREATE_POST} from "./types"
+import {REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_POSTS,  CREATE_POST, UPDATED_POST} from "./types"
 
 /* POSTS */
 /* fetch all posts */
@@ -21,6 +21,16 @@ export const invalidatePosts = posts => ({
     posts
 })
 
+
+export const updatedPost = post => ({
+  type: UPDATED_POST,
+  post
+})
+
+export const postCreated = post => ({
+  type: CREATE_POST,
+  post
+})
 /*
 fetchAllPosts(), on the other hand, allows us to return a function.
 Here, we first make the HTTP request from PostsAPI.
@@ -46,7 +56,10 @@ export const createPost = post => dispatch => (
 
 )
 
-export const postCreated = post => ({
-  type: CREATE_POST,
-  post
-})
+export const editPost = post => dispatch => (
+  PostsAPI.editPost(post.id, post)
+  .then((post) => dispatch(updatedPost(post)))
+  .catch(error => {
+    throw(error)
+  })
+)

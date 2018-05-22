@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
-import Paper from 'material-ui/Paper'
-import Typography from 'material-ui/Typography'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import Button from '@material-ui/core/Button'
+import DeleteIcon from '@material-ui/icons/Delete'
+import EditIcon from '@material-ui/icons/Edit'
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import styled from 'styled-components'
 import {formatDate} from '../utils/getDateString'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actions from '../actions/PostActions'
 
 const Flexrow = styled.div`
   display: flex;
@@ -12,8 +21,12 @@ const Flexrow = styled.div`
 const Flexcol2 = styled.div`
    width: 50%;
 `
-const Flexcol4 = styled.div`
-   width: 25%;
+const Flexcol3 = styled.div`
+   width: 33%;
+`
+const Flexcol3Right = styled.div`
+   width: 33%;
+   text-align: right;
 `
 const PostPaper = styled(Paper)`
 &&{
@@ -26,7 +39,34 @@ const PostBody =styled(Typography)`
   margin:16px 0px;
 }
 `
+const SmallIconButton = styled(Button)`
+  &&{
+    size: 4px;
+   margin-top: 0px;
+   padding: 0;
+  }
+`
+
+
+
 class PostDetails extends Component{
+  upVotePost = () => {
+    var {post} = this.props
+    post.voteScore += 1;
+    console.log("score = "+ post.voteScore )
+    this.props.actions.editPost(post)
+  }
+
+  downVotePost = () => {
+    var {post} = this.props
+    post.voteScore -= 1;
+    console.log("score = "+ post.voteScore )
+    this.props.actions.editPost(post)
+  }
+
+  componentDidMount(){
+    this.setState({post: this.props.post})
+  }
     render(){
       const { post} = this.props
 
@@ -47,17 +87,31 @@ class PostDetails extends Component{
               </Typography>
               </div>
               <Typography variant="caption" align="left" color="textSecondary" gutterBottom>by <b>{post.author}</b></Typography>
-
               <PostBody component="p" align="left" gutterBottom>
                   {post.body}
               </PostBody>
-              <Flexrow>
-                <Flexcol4>
+              <Divider /><br/>
+              <Flexrow gutterBottom>
+                <Flexcol3>
                   <Typography variant="caption" align="left" color="secondary" >Votes: <b>{post.voteScore}</b></Typography>
-                </Flexcol4><Flexcol4>
+                  <SmallIconButton size="small"  aria-label="Edit" onClick={() => this.upVotePost()} >
+                     <ArrowDropUpIcon />
+                  </SmallIconButton>
+                  <Button size="small" aria-label="Edit" onClick={() => this.downVotePost()}>
+                     <ArrowDropDownIcon />
+                  </Button>
+                </Flexcol3>
+                <Flexcol3>
                   <Typography variant="caption" align="left" color="secondary" >Comments: <b>{post.commentCount}</b></Typography>
-                </Flexcol4>
-                <Flexcol4 /><Flexcol4 />
+                </Flexcol3>
+                <Flexcol3Right >
+                  <Button  aria-label="Edit" size="small">
+                     <EditIcon />
+                  </Button>
+                  <Button aria-label="Delete" size="small">
+                     <DeleteIcon />
+                  </Button>
+                </Flexcol3Right>
               </Flexrow>
              </PostPaper>
              </span>
@@ -65,4 +119,14 @@ class PostDetails extends Component{
     }
 }
 
-export default PostDetails
+
+function mapStateToProps (state, ownProps){
+  return {
+    posts: state.postsReducer.posts
+  }
+}
+ function mapDispatchToProps(dispatch) {
+   return {actions: bindActionCreators(actions, dispatch)}
+ }
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetails)

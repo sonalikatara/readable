@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
+import Typography from '@material-ui/core/Typography'
 import PostDetails from './PostDetails'
 import * as actions from '../actions/PostActions'
 
@@ -34,8 +35,9 @@ class AllPosts extends Component{
         var showPosts = (mycategory!=="ALL")?posts.filter((p) => p.category === mycategory):posts
         return(
           <div>
-          <br/>
-         {mycategory.toUpperCase()} Blogs
+         <br/>
+         <Typography variant="subheading" align="center" color="textSecondary" gutterBottom> Now Showing {mycategory.toUpperCase()} Blogs</Typography>
+
           {showPosts.map((post)=>(
             <div key={post.id}>
                 <PostDetails post ={post} />

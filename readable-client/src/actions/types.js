@@ -4,6 +4,7 @@ export const INVALIDATE_POSTS = "INVALIDATE_POSTS"
 export const CREATE_POST = "CREATE_POST"
 export const DELETE_POST = "DELETE_POST"
 export const EDIT_POST = "EDIT_POST"
+export const UPDATED_POST = "UPDATED_POST"
 export const UPVOTE_POST = "UPVOTE_POST"
 export const DOWNVOTE_POST = "DOWNVOTE_POST"
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Grid from 'material-ui/Grid'
+import Grid from '@material-ui/core/Grid'
 import styled from 'styled-components'
 //import CreatePost from './CreatePost'
 import AllPosts from './AllPosts'

@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
-//import { Link } from 'react-router-dom'
 import TextField from 'material-ui/TextField'
 import styled from 'styled-components'
-import Button from 'material-ui/Button'
-import { withTheme } from 'material-ui/styles'
-import Select from 'material-ui/Select'
-import Input, { InputLabel } from 'material-ui/Input'
-import { Typography, FormControl } from 'material-ui'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
+import { withTheme } from '@material-ui/core/styles'
+import Select from '@material-ui/core/Select'
+import Input, { InputLabel } from '@material-ui/core/Input'
+import FormControl from '@material-ui/core/FormControl'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
-//import { createPost } from '../PostsAPI'
+import { bindActionCreators } from 'redux'
 import * as actions from '../actions/PostActions'
 
 const uuidv1 = require('uuid/v1')

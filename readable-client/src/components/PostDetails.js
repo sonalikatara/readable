@@ -67,9 +67,6 @@ class PostDetails extends Component{
     this.setState({post: this.props.post})
   }
 
- componentWillReceiveProps(){
-  this.setState({post: this.props.post})
- }
     render(){
       const { post} = this.props
 

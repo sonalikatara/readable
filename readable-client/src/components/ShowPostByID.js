@@ -9,20 +9,14 @@ class ShowPostByID extends Component {
     post : this.props.post
   }
 
-  componentDidMount(){
-
-  }
-
   componentWillMount(){
     var {showPostID} = this.props
     console.log(showPostID)
     this.setState({ post : this.props.actions.fetchPostById(showPostID)})
-  //console.log(this.state.post.title)
   }
 
   render(){
       const { post, ...rest }  = this.props
-
       return(
         <div>
           <PostDetails post={post} {...rest} />

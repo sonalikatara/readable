@@ -4,6 +4,7 @@ import {
     RECEIVE_POSTS,
     UPDATE_POST,
     RECEIVED_POST_BY_ID,
+    DELETE_POST,
 } from '../actions/types'
 
 function postsReducer(state=initialPostsState, action){
@@ -38,10 +39,17 @@ function postsReducer(state=initialPostsState, action){
     case UPDATE_POST :
        updatedPosts = state.posts.filter(post => post.id !== action.post.id)
        updatedPosts.push(action.post)
-       return{
+       return {
           ...state,
           posts: updatedPosts
        }
+
+    case DELETE_POST :
+     updatedPosts =  state.posts.filter((post) => post.id !== action.post.id)
+     return {
+       ...state,
+       posts: updatedPosts
+     }
 
     default :
         return state

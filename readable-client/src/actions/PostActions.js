@@ -37,9 +37,9 @@ export const receivedPostById = post => ({
   post
 })
 
-export const deletePost = posts => ({
+export const deletePost = post => ({
   type: DELETE_POST,
-  posts
+  post
 })
 
 /*
@@ -79,6 +79,15 @@ export const createPost = post => dispatch => (
 export const editPost = post => dispatch => (
   PostsAPI.editPost(post.id, post)
   .then((post) => dispatch(updatePost(post)))
+  .catch(error => {
+    throw(error)
+  })
+)
+
+export const deletePostById = (postId) => dispatch => (
+  PostsAPI
+  .deletePost(postId)
+  .then((post) => dispatch(deletePost(post)))
   .catch(error => {
     throw(error)
   })

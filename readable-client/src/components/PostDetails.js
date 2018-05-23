@@ -52,15 +52,18 @@ class PostDetails extends Component{
   upVotePost = () => {
     var {post} = this.props
     post.voteScore += 1;
-    console.log("score = "+ post.voteScore )
     this.props.actions.editPost(post)
   }
 
   downVotePost = () => {
     var {post} = this.props
     post.voteScore -= 1;
-    console.log("score = "+ post.voteScore )
     this.props.actions.editPost(post)
+  }
+
+  removePost = () => {
+    var {post} = this.props
+    this.props.actions.deletePostById(post.id)
   }
 
   componentDidMount(){
@@ -69,7 +72,6 @@ class PostDetails extends Component{
 
     render(){
       const { post} = this.props
-
       const createdAt = formatDate(post.timestamp)
 
         return(
@@ -109,7 +111,7 @@ class PostDetails extends Component{
                   <Button  aria-label="Edit" size="small">
                      <EditIcon />
                   </Button>
-                  <Button aria-label="Delete" size="small">
+                  <Button aria-label="Delete" size="small"  onClick = {() => this.removePost()}>
                      <DeleteIcon />
                   </Button>
                 </Flexcol3Right>

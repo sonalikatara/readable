@@ -32,6 +32,9 @@ export const fetchAllPosts = () =>
 export const getPost = (postId) =>
     fetch(`${api}/posts/${postId}`, { headers })
         .then(res => res.json())
+        .catch(error => {
+          return error
+        })
 
 
 //Get all comments of a post by id

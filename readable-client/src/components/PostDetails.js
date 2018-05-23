@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
@@ -47,8 +48,6 @@ const SmallIconButton = styled(Button)`
   }
 `
 
-
-
 class PostDetails extends Component{
   upVotePost = () => {
     var {post} = this.props
@@ -67,10 +66,15 @@ class PostDetails extends Component{
   componentDidMount(){
     this.setState({post: this.props.post})
   }
+
+ componentWillReceiveProps(){
+  this.setState({post: this.props.post})
+ }
     render(){
       const { post} = this.props
 
       const createdAt = formatDate(post.timestamp)
+
         return(
             <span>
             <PostPaper  elevation={3} >
@@ -78,12 +82,12 @@ class PostDetails extends Component{
                 <Flexcol2>
                   <Typography variant="caption" align="left" color="textSecondary" gutterBottom>{createdAt}</Typography>
                 </Flexcol2><Flexcol2>
-                  <Typography variant="caption" align="right" color="secondary" >Catergory: <b>{post.category.toUpperCase()}</b></Typography>
+                  <Typography variant="caption" align="right" color="secondary" >Catergory: <b>{post.category}</b></Typography>
                 </Flexcol2>
               </Flexrow>
               <div>
               <Typography variant="subheading" color="primary" align="left">
-                {post.title}
+                <Link to={"/posts/"+post.id}> {post.title} </Link>
               </Typography>
               </div>
               <Typography variant="caption" align="left" color="textSecondary" gutterBottom>by <b>{post.author}</b></Typography>
@@ -122,11 +126,14 @@ class PostDetails extends Component{
 
 function mapStateToProps (state, ownProps){
   return {
-    posts: state.postsReducer.posts
+      posts: state.postsReducer.posts
   }
 }
+
  function mapDispatchToProps(dispatch) {
-   return {actions: bindActionCreators(actions, dispatch)}
+   return {
+      actions: bindActionCreators(actions, dispatch)
+    }
  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetails)

@@ -8,6 +8,7 @@ import Home from './Home'
 import PostDetails from './PostDetails'
 import NotFound from './NotFound'
 import CreatePost from './CreatePost';
+import ShowPostByID from './ShowPostByID';
 
 class App extends Component {
   render() {
@@ -21,6 +22,9 @@ class App extends Component {
                     )} />
         <Route exact path="/Category/:showcategory" render = { props => (
                       <Home {...props}  />
+                    )} />
+         <Route exact path="/Posts/:showPostID" render = { props => (
+                      <ShowPostByID {...props}  />
                     )} />
         <Route path="/createPost" component={CreatePost} />
         <Route path="/PostDetails" component={PostDetails} />

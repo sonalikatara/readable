@@ -7,6 +7,7 @@ export const EDIT_POST = "EDIT_POST"
 export const UPDATED_POST = "UPDATED_POST"
 export const UPVOTE_POST = "UPVOTE_POST"
 export const DOWNVOTE_POST = "DOWNVOTE_POST"
+export const RECEIVED_POST_BY_ID = "RECEIVE_POST_BY_ID"
 
 
 export const REQUEST_CATEGORIES = "REQUEST_CATEGORIES"

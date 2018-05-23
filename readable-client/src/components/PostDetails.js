@@ -108,7 +108,7 @@ class PostDetails extends Component{
                   <Typography variant="caption" align="left" color="secondary" >Comments: <b>{post.commentCount}</b></Typography>
                 </Flexcol3>
                 <Flexcol3Right >
-                  <Button  aria-label="Edit" size="small">
+                  <Button  aria-label="Edit" size="small" href={"/EditPost/"+post.id}>
                      <EditIcon />
                   </Button>
                   <Button aria-label="Delete" size="small"  onClick = {() => this.removePost()}>

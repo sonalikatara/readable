@@ -9,6 +9,7 @@ import PostDetails from './PostDetails'
 import NotFound from './NotFound'
 import CreatePost from './CreatePost';
 import ShowPostByID from './ShowPostByID';
+import EditPost from './EditPost';
 
 class App extends Component {
   render() {
@@ -25,6 +26,9 @@ class App extends Component {
                     )} />
          <Route exact path="/Posts/:showPostID" render = { props => (
                       <ShowPostByID {...props}  />
+                    )} />
+         <Route exact path="/EditPost/:showPostID" render = { props => (
+                      <EditPost {...props}  />
                     )} />
         <Route path="/createPost" component={CreatePost} />
         <Route path="/PostDetails" component={PostDetails} />

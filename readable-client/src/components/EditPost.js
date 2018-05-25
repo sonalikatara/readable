@@ -99,7 +99,6 @@ class EditPost extends Component {
 
     render(){
       const {theme, categories,post} = this.props
-     console.log("post = " + JSON.stringify(post))
       var author = post.author
         return(
               <PostDetailsForm

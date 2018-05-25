@@ -23,10 +23,10 @@ class AllComments extends Component {
 
   componentWillMount(){
     const { postID } = this.props
-    console.log("postID : " + postID)
+   // console.log("postID : " + postID)
     this.setState({ postID : postID})
      this.setState({ comments : this.props.actions.fetchPostComments(postID)})
-     console.log("Comments : " + this.state.comments.length)
+    // console.log("Comments : " + this.state.comments.length)
   }
 
   render(){
@@ -41,7 +41,6 @@ class AllComments extends Component {
               <CommentDetails comment={comment} />
            </div>
          )) }
-         {console.log(JSON.stringify(comments))}
       </CommentPaper>
     )
   }

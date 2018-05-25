@@ -11,6 +11,7 @@ import styled from 'styled-components'
 import {formatDate} from '../../utils/getDateString'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import EditComment from '../comments/EditComment'
 import * as actions from '../../actions/CommentActions'
 
 const Flexrow = styled.div`
@@ -41,64 +42,84 @@ const SmallIconButton = styled(Button)`
 
 
 class CommentDetails extends Component {
+
+  state = {
+    isEditingComment: false
+  }
+
+   toggleEditComment = () => {
+    this.setState({
+        isEditingComment: !this.state.isEditingComment
+    })
+   }
+
   upVoteComment = () => {
     var {comment} = this.props
-    comment.voteScore += 1;
+    comment.voteScore += 1
     this.props.actions.editComment(comment)
   }
 
   downVoteComment = () => {
     var {comment} = this.props
-    comment.voteScore -= 1;
+    comment.voteScore -= 1
     this.props.actions.editComment(comment)
   }
 
   removeComment = () => {
-    var {comment} = this.props
+    var {comment,post} = this.props
     this.props.actions.deleteCommentById(comment.id)
+    post.commentCount -= 1
   }
 
   componentDidMount(){
+    this.setState({post: this.props.post})
     this.setState({comment: this.props.comment})
   }
 
   render(){
-    const { comment } = this.props
+    const { comment, props } = this.props
     const createdAt = formatDate(comment.timestamp)
 
     return(
       <div>
-         <Flexrow>
+        {this.state.isEditingComment && (
+            <EditComment  comment={comment} {...props} ></EditComment>
+        )}
+        {!this.state.isEditingComment && (
+        <div>
+          <Flexrow>
+              <Flexcol2>
+                <Typography variant="caption" align="left" color="secondary" >Comment by: <b>{comment.author}</b></Typography>
+              </Flexcol2>
+              <Flexcol2>
+                <Typography variant="caption" align="right" color="textSecondary" gutterBottom>{createdAt}</Typography>
+              </Flexcol2>
+          </Flexrow>
+          <CommentBody component="p" align="left" gutterBottom>
+                    {comment.body}
+          </CommentBody>
+          <Flexrow gutterBottom>
             <Flexcol2>
-              <Typography variant="caption" align="left" color="secondary" >Comment by: <b>{comment.author}</b></Typography>
+              <Typography variant="caption" align="left" color="secondary" >Votes: <b>{comment.voteScore}</b></Typography>
+              <SmallIconButton size="small"  aria-label="Edit" onClick={() => this.upVoteComment()} >
+                  <ArrowDropUpIcon />
+              </SmallIconButton>
+              <Button size="small" aria-label="Edit" onClick={() => this.downVoteComment()}>
+                  <ArrowDropDownIcon />
+              </Button>
             </Flexcol2>
-            <Flexcol2>
-              <Typography variant="caption" align="right" color="textSecondary" gutterBottom>{createdAt}</Typography>
-            </Flexcol2>
-        </Flexrow>
-        <CommentBody component="p" align="left" gutterBottom>
-                  {comment.body}
-        </CommentBody>
-        <Flexrow gutterBottom>
-          <Flexcol2>
-            <Typography variant="caption" align="left" color="secondary" >Votes: <b>{comment.voteScore}</b></Typography>
-            <SmallIconButton size="small"  aria-label="Edit" onClick={() => this.upVoteComment()} >
-                <ArrowDropUpIcon />
-            </SmallIconButton>
-            <Button size="small" aria-label="Edit" onClick={() => this.downVoteComment()}>
-                <ArrowDropDownIcon />
-            </Button>
-          </Flexcol2>
-          <Flexcol2Right >
-            <Button  aria-label="Edit" size="small" href={"/EditComment/"+comment.id}>
-                <EditIcon />
-            </Button>
-            <Button aria-label="Delete" size="small"  onClick = {() => this.removeComment()}>
-                <DeleteIcon />
-            </Button>
-          </Flexcol2Right>
-        </Flexrow>
-        <Divider /><br/>
+            <Flexcol2Right >
+              <Button  aria-label="Edit" size="small" onClick = {() => this.toggleEditComment()} >
+                  <EditIcon />
+              </Button>
+              <Button aria-label="Delete" size="small"  onClick = {() => this.removeComment()}>
+                  <DeleteIcon />
+              </Button>
+            </Flexcol2Right>
+          </Flexrow>
+          <Divider /><br/>
+        </div>
+      )}
       </div>
     )
   }
@@ -107,6 +128,7 @@ class CommentDetails extends Component {
 
 function mapStateToProps (state, ownProps){
   return {
+    post :state.postsReducer.post,
     comments : state.commentsReducer.comments
   }
 }

@@ -7,9 +7,10 @@ import Home from './Home'
 //import Category from './Category'
 import PostDetails from './PostDetails'
 import NotFound from './NotFound'
-import CreatePost from './CreatePost';
-import ShowPostByID from './ShowPostByID';
-import EditPost from './EditPost';
+import CreatePost from './CreatePost'
+import ShowPostByID from './ShowPostByID'
+import EditPost from './EditPost'
+import EditComment from './comments/EditComment'
 
 class App extends Component {
   render() {
@@ -29,6 +30,9 @@ class App extends Component {
                     )} />
          <Route exact path="/EditPost/:showPostID" render = { props => (
                       <EditPost {...props}  />
+                    )} />
+         <Route exact path="/EditComment/:showCommentID" render = { props => (
+                      <EditComment {...props}  />
                     )} />
         <Route path="/createPost" component={CreatePost} />
         <Route path="/PostDetails" component={PostDetails} />

@@ -1,5 +1,5 @@
 import * as PostsAPI from "../PostsAPI"
-import {  RECEIVE_COMMENTS, ADD_NEW_COMMENT, EDIT_COMMENT, DELETE_COMMENT} from "./types"
+import {  RECEIVE_COMMENTS,  EDIT_COMMENT, DELETE_COMMENT} from "./types"
 
 export const receiveComments = comments => ({
   type: RECEIVE_COMMENTS,

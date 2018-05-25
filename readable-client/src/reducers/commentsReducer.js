@@ -1,6 +1,5 @@
 import { GET_ALL_COMMENTS ,
         RECEIVE_COMMENTS,
-        ADD_NEW_COMMENT,
         EDIT_COMMENT,
         DELETE_COMMENT
       } from "../actions/types"

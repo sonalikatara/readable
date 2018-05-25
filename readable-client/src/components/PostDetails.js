@@ -68,6 +68,7 @@ class PostDetails extends Component{
 
   componentDidMount(){
     this.setState({post: this.props.post})
+    this.setState({comments: this.props.comments})
   }
 
     render(){
@@ -121,7 +122,6 @@ class PostDetails extends Component{
         )
     }
 }
-
 
 function mapStateToProps (state, ownProps){
   return {

@@ -37,10 +37,14 @@ export const getPost = (postId) =>
         })
 
 
+
 //Get all comments of a post by id
 export const getPostComments = (postId) =>
     fetch(`${api}/posts/${postId}/comments`, { headers })
         .then(res => res.json())
+        .catch(error => {
+          return error
+        })
 
 //Create a new post
 export const createPost = (post) =>

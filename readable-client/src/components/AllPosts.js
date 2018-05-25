@@ -7,7 +7,6 @@ import PostSort from './PostSort'
 import * as actions from '../actions/PostActions'
 
 class AllPosts extends Component{
-
     state = {
       posts : this.props.posts
     }

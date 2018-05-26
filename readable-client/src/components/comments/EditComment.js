@@ -11,8 +11,6 @@ import * as actions from '../../actions/CommentActions'
 const CommentDetailsForm = styled.form`
 &&{
   margin: ${x => x.theme.spacing.unit * 4}px;
-  display: flex;
-  flex-direction: column;
 }`
 
 const CommentText = styled(TextField)`
@@ -32,9 +30,9 @@ class EditComment extends Component {
   }
 
   componentWillMount(){
-    var {comment} = this.props
-    var showCommentID = comment.id
-    console.log(comment.body)
+    var comment = this.props.comment
+    //var showCommentID = comment.id
+    //console.log("comment body" + comment.body)
     this.setState( {comment : comment})
   }
 

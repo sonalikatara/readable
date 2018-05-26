@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import Button from '@material-ui/core/Button'
@@ -40,11 +39,12 @@ const SmallIconButton = styled(Button)`
   }
 `
 
-
 class CommentDetails extends Component {
 
   state = {
-    isEditingComment: false
+    isEditingComment: false,
+    editComment :{},
+    post: {}
   }
 
    toggleEditComment = () => {
@@ -83,10 +83,10 @@ class CommentDetails extends Component {
     return(
       <div>
         {this.state.isEditingComment && (
-            <EditComment  comment={comment} {...props} ></EditComment>
+            <EditComment comment={comment} {...props} />
         )}
         {!this.state.isEditingComment && (
-        <div>
+        <div >
           <Flexrow>
               <Flexcol2>
                 <Typography variant="caption" align="left" color="secondary" >Comment by: <b>{comment.author}</b></Typography>
@@ -129,7 +129,8 @@ class CommentDetails extends Component {
 function mapStateToProps (state, ownProps){
   return {
     post :state.postsReducer.post,
-    comments : state.commentsReducer.comments
+    comments : state.commentsReducer.comments,
+
   }
 }
 

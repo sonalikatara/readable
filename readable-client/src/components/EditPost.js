@@ -42,8 +42,6 @@ const PostFormControl = styled(FormControl)`
  margin: ${x => x.theme.spacing.unit * 4}px 0px;
 }`
 
-
-
 class EditPost extends Component {
   state = {
     post : this.props.post

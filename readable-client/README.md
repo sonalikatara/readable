@@ -20,35 +20,55 @@ start the project with yarn - yarn start
 listen the server on http://localhost:3000
 
 ## The Views
+
 The application should has four views:
 
 ### Default (Root)
+
 ![Main Page](./src/images/homeScreen.png)
-lists all available categories, which links to a category view for that category
-it lists all of the posts
-it has a control for changing the sort method for the list, order by voteScore and order by timestamp
-should have a control for adding a new post
+
+* lists all available categories, which links to a category view for that category
+
+* it lists all of the posts
+
+* it has a control for changing the sort method for the list, order by voteScore and order by timestamp
+
+*  has a control for adding a new post
+
 
 ### Category View
 
 ![Category View](./src/images/CategoryView.png)
+
+
 identical to the default view, but filtered to only include posts with the selected category
 
 
 ### Post Detail View
 
 ![Category View](./src/images/CreateEditPost.png)
-shows the details of a post, including: Title, Body, Author, timestamp (in user readable format), and vote score
-lists all of the comments for that post
-has controls to edit or delete the post
-has a control to add a new comment.
-implements comment form inline
-comments have controls for editing or deleting
+
+* shows the details of a post, including: Title, Body, Author, timestamp (in user readable format), and vote score
+
+* lists all of the comments for that post
+
+* has controls to edit or delete the post
+
+* has a control to add a new comment.
+
+* implements comment form inline
+
+* comments have controls for editing or deleting
+
 
 ### Create/Edit Post View
-should have a form to create new post or edit existing posts
-when editing, existing data should be populated in the form
-Post/Comment UI
+
 ![Create Post](./src/images/CreatePostView.png)
+
+* has a form to create new post or edit existing posts
+
+* when editing, existing data is populated in the form
+
+### Post/Comment UI
 
 Posts and comments, in all views where they are displayed, should display their current score and should have controls to increment or decrement the voteScore for the object. Posts should display the number of comments associated with the post.

@@ -20,9 +20,17 @@ const Flexrow = styled.div`
 `
 const Flexcol2 = styled.div`
    width: 50%;
-`
+  `
 const Flexcol2Right = styled.div`
    width: 50%;
+   text-align: right;
+`
+const Flexcol3 = styled.div`
+   width: 33%;
+   padding-top:0px;
+`
+const Flexcol3Right = styled.div`
+   width: 33%;
    text-align: right;
 `
 
@@ -35,7 +43,7 @@ const SmallIconButton = styled(Button)`
   &&{
     size: 4px;
    margin-top: 0px;
-   padding: 0;
+   padding: 0px;
   }
 `
 
@@ -43,17 +51,13 @@ class CommentDetails extends Component {
 
   state = {
     isEditingComment: false,
-   // editComment :{},
     comment: {},
     post: {}
   }
 
    toggleEditComment = () => {
-      console.log("in toggleEditComment" + this.state.isEditingComment)
       var shouldEditComment = this.state.isEditingComment ? false : true
-      console.log("shouldEditComment : "+ shouldEditComment)
       this.setState({ isEditingComment: shouldEditComment})
-      console.log("edit comment" + this.state.isEditingComment + JSON.stringify(this.state.editComment))
       if (shouldEditComment){
         this.props.actions.setActiveComment(this.props.comment)
       }
@@ -79,12 +83,11 @@ class CommentDetails extends Component {
 
   componentWillMount(){
     this.setState({post: this.props.post})
-    console.log("now displaying" + JSON.stringify(this.props.comment))
     this.setState({comment: this.props.comment})
   }
 
   render(){
-    const { comment, activeComment,  props } = this.props
+    const { comment,  props } = this.props
     const createdAt = formatDate(comment.timestamp)
 
     return(
@@ -106,23 +109,24 @@ class CommentDetails extends Component {
                     {comment.body}
           </CommentBody>
           <Flexrow gutterBottom>
-            <Flexcol2>
+            <Flexcol3>
               <Typography variant="caption" align="left" color="secondary" >Votes: <b>{comment.voteScore}</b></Typography>
-              <SmallIconButton size="small"  aria-label="Edit" onClick={() => this.upVoteComment()} >
+              <SmallIconButton size="small" align="left" aria-label="Edit" onClick={() => this.upVoteComment()} >
                   <ArrowDropUpIcon />
               </SmallIconButton>
-              <Button size="small" aria-label="Edit" onClick={() => this.downVoteComment()}>
+              <Button size="small" aria-label="Edit" align="left" onClick={() => this.downVoteComment()}>
                   <ArrowDropDownIcon />
               </Button>
-            </Flexcol2>
-            <Flexcol2Right >
+            </Flexcol3>
+            <Flexcol3 />
+            <Flexcol3Right >
               <Button  aria-label="Edit" size="small" onClick = {() => this.toggleEditComment()} >
                   <EditIcon />
               </Button>
               <Button aria-label="Delete" size="small"  onClick = {() => this.removeComment()}>
                   <DeleteIcon />
               </Button>
-            </Flexcol2Right>
+            </Flexcol3Right>
           </Flexrow>
           <Divider /><br/>
         </div>

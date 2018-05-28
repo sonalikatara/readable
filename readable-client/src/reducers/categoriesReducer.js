@@ -1,6 +1,7 @@
 import {
     REQUEST_CATEGORIES,
     RECEIVE_CATEGORIES,
+    SET_ACTIVE_CATEGORY,
 } from '../actions/types'
 
 function categoriesReducer(state= initiaCategoriesState, action){
@@ -18,6 +19,12 @@ function categoriesReducer(state= initiaCategoriesState, action){
               categories: action.categories
             }
 
+    case SET_ACTIVE_CATEGORY :
+            return{
+              ...state,
+              activeCategory: action.activeCategory
+            }
+
     default:
            return state
   }
@@ -26,6 +33,7 @@ function categoriesReducer(state= initiaCategoriesState, action){
 
 const initiaCategoriesState = {
   categories : [],
+  activeCategory : "ALL",
 }
 
 export default categoriesReducer

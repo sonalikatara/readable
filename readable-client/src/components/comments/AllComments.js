@@ -17,6 +17,12 @@ const CommentPaper = styled(Paper)`
   margin-top: 8px;
 }
 `
+const StyledButton = styled(Button)`
+ &&(
+   margin : 0px;
+   padding :0px;
+ )
+`
 const Flexrow = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -24,6 +30,10 @@ const Flexrow = styled.div`
 `
 const Flexcol2 = styled.div`
    width: 50%;
+`
+const Flexcol2Right = styled.div`
+   width: 50%;
+   flex-flow: reverse;
 `
 class AllComments extends Component {
   state = {
@@ -38,10 +48,8 @@ class AllComments extends Component {
 
   componentWillMount(){
     const { postID } = this.props
-   // console.log("postID : " + postID)
     this.setState({ postID : postID})
      this.setState({ comments : this.props.actions.fetchPostComments(postID)})
-    // console.log("Comments : " + this.state.comments.length)
   }
 
   render(){
@@ -49,21 +57,23 @@ class AllComments extends Component {
     comments.sort((a, b) => {
       return (new Date(a.timestamp) < new Date(b.timestamp))
     })
+    console.log("this.props.activeComment.author : " + this.props.activeComment.author)
+
     return(
       <CommentPaper>
       <Flexrow>
         <Flexcol2>
           <Typography variant="caption" align="left" color="textSecondary" gutterBottom>COMMENTS</Typography>
        </Flexcol2>
-       <Flexcol2>
-          <Button  aria-label="Add" size="small" onClick={this.handleAddComment}>
-            <AddIcon />
-          </Button>
-       </Flexcol2>
+       <Flexcol2Right>
+          <StyledButton  aria-label="Add" size="small" onClick={this.handleAddComment}>
+            <AddIcon /> Comment
+          </StyledButton>
+       </Flexcol2Right>
       </Flexrow>
        <Divider />
        {
-         this.state.showAddComment && (
+         this.state.showAddComment && (this.props.activeComment.author==="") && (
             <EditComment  />
         )}
          {comments.map((comment)=> (
@@ -78,7 +88,8 @@ class AllComments extends Component {
 
 function mapStateToProps(state, ownProps){
   return{
-    comments : state.commentsReducer.comments
+    comments : state.commentsReducer.comments,
+    activeComment : state.commentsReducer.activeComment
   }
 }
 

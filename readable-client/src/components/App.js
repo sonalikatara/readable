@@ -14,7 +14,6 @@ import EditComment from './comments/EditComment'
 
 class App extends Component {
   render() {
-    console.log("Props : "+ JSON.stringify(this.props))
     return (
       <div className="App">
       <AppHeader />

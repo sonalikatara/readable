@@ -79,14 +79,14 @@ export const deletePost = (postId) =>
     }).then(res => res.json())
 
 //create a comment for a post
-export const createComment = (body) =>
+export const createComment = (comment) =>
 fetch(`${api}/comments`, {
     method: 'POST',
     headers: {
         ...headers,
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(comment)
 }).then(res => res.json())
 
 

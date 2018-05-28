@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import TextField from '@material-ui/core/TextField'
 import styled from 'styled-components'
 import Button from '@material-ui/core/Button'
+import { Divider } from '@material-ui/core'
 import { withTheme } from '@material-ui/core/styles'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux'
@@ -13,7 +14,9 @@ const uuidv1 = require('uuid/v1')
 
 const CommentDetailsForm = styled.form`
 &&{
-  margin: ${x => x.theme.spacing.unit * 4}px;
+  align: left;
+  margin: ${x => x.theme.spacing.unit * 0.5}px;
+  padding: 0px;
 }`
 
 const CommentText = styled(TextField)`
@@ -24,28 +27,43 @@ const CommentText = styled(TextField)`
 const CommentAuthor = styled(TextField)`
 &&{
   width: 80%;
-  margin-Top: ${x => x.theme.spacing.unit * 2}px;
+  margin-Top: ${x => x.theme.spacing.unit * 0.5}px;
 }`
 
 class EditComment extends Component {
-  state = {
 
-    activeComment : (this.props.activeComment) ? this.props.activeComment :{}
+  state = {
+    activeComment : (this.props.activeComment) ? this.props.activeComment : {}
   }
 
   updateComment = (e,comment) => {
-        e.preventDefault()
+       // e.preventDefault()
         const values = serializeForm(e.target, {hash: true})
-        //console.log("values = " + JSON.stringify(values))
-        const editedComment = {
-                          id: this.props.activeComment.id,
-                          body: values.newBody,
-                          author: values.newAuthor,
-                          timestamp: Date.now()
+        if (this.props.activeComment.id==="000"){
+          // new comment
+            const addComment = {
+              id: uuidv1(),
+              timestamp: Date.now(),
+              body: values.newBody,
+              author: values.newAuthor,
+              parentId: this.props.post.id
+            }
+            this.props.actions.addNewComment(addComment).then(()=>{
+              this.props.history.push('/posts/'+this.props.post.id)
+            })
         }
-       this.props.actions.editComment(editedComment).then(()=>{
-        this.props.history.push('/')
-       })
+        else {
+          // update an existing comment
+          const editedComment = {
+                      id: this.props.activeComment.id,
+                      body: values.newBody,
+                      author: values.newAuthor,
+                      timestamp: Date.now()
+          }
+          this.props.actions.editComment(editedComment).then(()=>{
+          this.props.history.push('/')
+          })
+        }
     }
 
     updateBody = (e) => {
@@ -62,24 +80,15 @@ class EditComment extends Component {
 
 
   componentWillMount(){
-    var activeComment = this.props.activeComment? this.props.activeComment : {}
-    var showCommentID = activeComment.id ? activeComment.id : uuidv1()
-    //console.log("comment body" + this.props.activeComment.body)
+    var activeComment = this.props.activeComment
     this.setState( {activeComment : activeComment})
-    var newComment = {
-          id : uuidv1(),
-          author: "",
-          body:"",
-    }
   }
 
     render(){
-      const {theme, post, ...props} = this.props
-      const activeComment = this.props.activeComment ? this.props.activeComment : {}
-     //console.log("edit comment = " + JSON.stringify(activeComment))
+      const {theme} = this.props
+      const activeComment = this.props.activeComment
       var author = activeComment.author
       var body = activeComment.body
-      var commentId = activeComment.id
         return(
               <CommentDetailsForm
                 theme={theme}
@@ -111,6 +120,7 @@ class EditComment extends Component {
                    >
                     SAVE COMMENT
                   </Button>
+               <Divider />
               </CommentDetailsForm>
 
         )

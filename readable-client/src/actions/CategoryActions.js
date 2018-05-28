@@ -1,5 +1,5 @@
 import * as PostsAPI from "../PostsAPI"
-import { REQUEST_CATEGORIES , RECEIVE_CATEGORIES} from "./types"
+import { REQUEST_CATEGORIES , RECEIVE_CATEGORIES, SET_ACTIVE_CATEGORY} from "./types"
 
 export const requestCategories = categories => ({
   type: REQUEST_CATEGORIES,
@@ -11,6 +11,11 @@ export const receiveCategories = categories => ({
   categories
 })
 
+export const setActiveCategory = activeCategory => ({
+  type: SET_ACTIVE_CATEGORY,
+  activeCategory
+})
+
 export const fetchAllCategories = () => dispatch => (
   PostsAPI.fetchAllCategories()
   .then((categories)=>dispatch(receiveCategories(categories)))
@@ -19,5 +24,6 @@ export const fetchAllCategories = () => dispatch => (
   })
 
 )
+
 
 

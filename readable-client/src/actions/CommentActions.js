@@ -26,9 +26,15 @@ export const clearActiveComment = activeComment => ({
     activeComment
 })
 
+export const commentCreated = comment => ({
+  type: ADD_NEW_COMMENT,
+  comment
+})
+
 export const  fetchPostComments  = (postID) => dispatch => (
   PostsAPI.getPostComments(postID)
   .then((comments)=>dispatch(receiveComments(comments)))
+  .then((comment) => dispatch(clearActiveComment(comment)))
   .catch(error => {
     return error
   })
@@ -52,3 +58,11 @@ export const deleteCommentById = (commentId) => dispatch => (
   })
 )
 
+export const addNewComment = (comment) => dispatch =>(
+  PostsAPI
+  .createComment(comment)
+  .then((comment) => dispatch(commentCreated(comment)))
+  .catch(error => {
+    throw(error)
+  })
+)

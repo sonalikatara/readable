@@ -47,7 +47,7 @@ function commentsReducer(state= initialCommentsState, action){
      case CLEAR_ACTIVE_COMMENT :
             return {
               ...state,
-              activeComment: {}
+              activeComment: {id : "000", author : "", body : ""}
             }
 
     default:
@@ -58,7 +58,7 @@ function commentsReducer(state= initialCommentsState, action){
 
 var initialCommentsState = {
     comment: {},
-    activeComment: {},
+    activeComment: {id : "000", author : "", body : ""},
     comments: [],
 }
 

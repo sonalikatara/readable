@@ -1,7 +1,9 @@
 import { GET_ALL_COMMENTS ,
         RECEIVE_COMMENTS,
         EDIT_COMMENT,
-        DELETE_COMMENT
+        DELETE_COMMENT,
+        SET_ACTIVE_COMMENT,
+        CLEAR_ACTIVE_COMMENT
       } from "../actions/types"
 
 function commentsReducer(state= initialCommentsState, action){
@@ -25,6 +27,7 @@ function commentsReducer(state= initialCommentsState, action){
     updatedComments.push(action.comment)
     return {
        ...state,
+       comment: action.comment,
        comments: updatedComments
     }
 
@@ -35,6 +38,18 @@ function commentsReducer(state= initialCommentsState, action){
        comments: updatedComments
      }
 
+     case SET_ACTIVE_COMMENT :
+             return {
+               ...state,
+               activeComment: action.activeComment
+             }
+
+     case CLEAR_ACTIVE_COMMENT :
+            return {
+              ...state,
+              activeComment: {}
+            }
+
     default:
         return state
   }
@@ -43,6 +58,7 @@ function commentsReducer(state= initialCommentsState, action){
 
 var initialCommentsState = {
     comment: {},
+    activeComment: {},
     comments: [],
 }
 

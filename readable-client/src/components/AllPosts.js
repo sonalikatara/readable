@@ -8,7 +8,7 @@ import * as actions from '../actions/PostActions'
 
 class AllPosts extends Component{
     state = {
-      posts : this.props.posts
+      posts : this.props.posts,
     }
 
     updatePosts = (sortBy) => {
@@ -54,11 +54,10 @@ class AllPosts extends Component{
 
     componentWillMount(){
       this.setState({ posts : this.props.actions.fetchAllPosts()})
-      this.updatePosts("timestampDesc")
     }
 
     render(){
-        const { posts, showcategory }  = this.props
+        const { posts, showcategory, ...props }  = this.props
 
         var mycategory = showcategory?showcategory:"ALL"
         var showPosts = (mycategory!=="ALL")?posts.filter((p) => p.category === mycategory):posts
@@ -69,9 +68,10 @@ class AllPosts extends Component{
          <Typography variant="subheading" align="center" color="textSecondary" gutterBottom> Now Showing {mycategory.toUpperCase()} Blogs</Typography>
          <Typography variant="caption" align="right"  gutterBottom><PostSort updatePosts={this.updatePosts} /> </Typography>
 
-          {showPosts.map((post)=>(
+          {
+            showPosts.map((post)=>(
             <div key={post.id}>
-                <PostDetails post ={post} />
+                <PostDetails post ={post} {...props}/>
             </div>
           ))}
           </div>

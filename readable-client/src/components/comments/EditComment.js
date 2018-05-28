@@ -6,7 +6,10 @@ import { withTheme } from '@material-ui/core/styles'
 import serializeForm from 'form-serialize'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router-dom'
 import * as actions from '../../actions/CommentActions'
+
+const uuidv1 = require('uuid/v1')
 
 const CommentDetailsForm = styled.form`
 &&{
@@ -26,45 +29,61 @@ const CommentAuthor = styled(TextField)`
 
 class EditComment extends Component {
   state = {
-    comment : this.props.comment
-  }
 
-  componentWillMount(){
-    var comment = this.props.comment
-    //var showCommentID = comment.id
-    //console.log("comment body" + comment.body)
-    this.setState( {comment : comment})
+    activeComment : (this.props.activeComment) ? this.props.activeComment :{}
   }
 
   updateComment = (e,comment) => {
         e.preventDefault()
         const values = serializeForm(e.target, {hash: true})
-        console.log("values = " + JSON.stringify(values))
+        //console.log("values = " + JSON.stringify(values))
         const editedComment = {
-                          id: comment.id,
+                          id: this.props.activeComment.id,
                           body: values.newBody,
                           author: values.newAuthor,
                           timestamp: Date.now()
         }
        this.props.actions.editComment(editedComment).then(()=>{
-          this.props.history.push('/')
-        })
+        this.props.history.push('/')
+       })
     }
 
     updateBody = (e) => {
-      var {comment} = this.props
-      comment.body = e.target.value
-      this.setState({comment})
+      var {activeComment} = this.props
+      activeComment.body = e.target.value
+      this.setState({ activeComment : activeComment})
     }
 
+    updateAuthor = (e) => {
+      var {activeComment} = this.props
+      activeComment.author = e.target.value
+      this.setState({ activeComment : activeComment})
+    }
+
+
+  componentWillMount(){
+    var activeComment = this.props.activeComment? this.props.activeComment : {}
+    var showCommentID = activeComment.id ? activeComment.id : uuidv1()
+    //console.log("comment body" + this.props.activeComment.body)
+    this.setState( {activeComment : activeComment})
+    var newComment = {
+          id : uuidv1(),
+          author: "",
+          body:"",
+    }
+  }
+
     render(){
-      const {theme, comment} = this.props
-     console.log("comment = " + JSON.stringify(comment))
-      var author = comment.author
+      const {theme, post, ...props} = this.props
+      const activeComment = this.props.activeComment ? this.props.activeComment : {}
+     //console.log("edit comment = " + JSON.stringify(activeComment))
+      var author = activeComment.author
+      var body = activeComment.body
+      var commentId = activeComment.id
         return(
               <CommentDetailsForm
                 theme={theme}
-                onSubmit={(e)=>{this.updateComment(e,comment)}}
+                onSubmit={(e)=>{this.updateComment(e,activeComment)}}
                 >
                   <CommentAuthor
                     name = "newAuthor"
@@ -79,19 +98,18 @@ class EditComment extends Component {
                     id='txtComment'
                     name="newBody"
                     placeholder='Your Comment'
-                    value={comment.body}
-                    onChange={this.updateBody}
+                    value={body}
                     multiline
                     fullWidth
                     rows="4"
-                    theme={theme}>
-                  </CommentText>
-                  <br/>
+                    theme={theme}
+                    onChange={this.updateBody} />
+                   <br/>
                   <Button
                     type='raised'
                     color="primary"
                    >
-                    EDIT COMMENT
+                    SAVE COMMENT
                   </Button>
               </CommentDetailsForm>
 
@@ -101,7 +119,8 @@ class EditComment extends Component {
 
 function mapStateToProps (state, ownProps){
   return {
-    comment : state.commentsReducer.comment,
+    activeComment : state.commentsReducer.activeComment,
+    post: state.postsReducer.post
   }
  }
 
@@ -109,4 +128,4 @@ function mapStateToProps (state, ownProps){
    return {actions: bindActionCreators(actions, dispatch)}
  }
 
-export default withTheme()(connect(mapStateToProps, mapDispatchToProps)(EditComment))
+export default withTheme()(connect(mapStateToProps, mapDispatchToProps)(withRouter(EditComment)))

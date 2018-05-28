@@ -13,6 +13,11 @@ const Container = styled(Grid)`
 `;
 
 class Home extends Component {
+
+    componentWillMount(){
+        this.setState({showcategory: this.props.showcategory})
+    }
+
     render(){
        var {showcategory, props} = this.props
         return(

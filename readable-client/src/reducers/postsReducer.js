@@ -17,10 +17,14 @@ function postsReducer(state=initialPostsState, action){
     }
 
     case RECEIVE_POSTS:
-    return{
-      ...state,
-      posts: action.posts,
-    }
+      updatedPosts = action.posts
+      updatedPosts.sort((a, b) => {
+          return (new Date(a.timestamp) < new Date(b.timestamp))
+      })
+      return{
+        ...state,
+        posts: updatedPosts,
+      }
 
     case RECEIVED_POST_BY_ID:
     return{
@@ -39,6 +43,10 @@ function postsReducer(state=initialPostsState, action){
     case UPDATE_POST :
        updatedPosts = state.posts.filter(post => post.id !== action.post.id)
        updatedPosts.push(action.post)
+       updatedPosts.sort((a, b) => {
+        return (new Date(a.timestamp) < new Date(b.timestamp))
+      })
+
        return {
           ...state,
           posts: updatedPosts
@@ -46,6 +54,9 @@ function postsReducer(state=initialPostsState, action){
 
     case DELETE_POST :
      updatedPosts =  state.posts.filter((post) => post.id !== action.post.id)
+     updatedPosts.sort((a, b) => {
+      return (new Date(a.timestamp) < new Date(b.timestamp))
+      })
      return {
        ...state,
        posts: updatedPosts

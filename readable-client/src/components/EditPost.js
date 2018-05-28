@@ -38,7 +38,7 @@ const PostTitle = styled(TextField)`
 const PostFormControl = styled(FormControl)`
 &&{
   width: 80%;
-  minWidth: 120px
+  minWidth: 120px;
  margin: ${x => x.theme.spacing.unit * 4}px 0px;
 }`
 
@@ -103,7 +103,7 @@ class EditPost extends Component {
                 theme={theme}
                 onSubmit={(e)=>{this.updatePost(e,post)}}
                 >
-                  <PostHeader variant='body2' align="left" gutterBottom> Create a Post </PostHeader>
+                  <PostHeader variant='body2' align="left" gutterBottom > Create a Post </PostHeader>
                   <PostTitle
                     name = "newAuthor"
                     placeholder='Your Name'
@@ -146,12 +146,12 @@ class EditPost extends Component {
                     multiline
                     fullWidth
                     rows="10"
-                    theme={theme}>
-                  </PostText>
+                    theme={theme} />
                   <br/>
                   <Button
                     type='raised'
                     color="primary"
+                    value="EDIT POST"
                    >
                     EDIT POST
                   </Button>

@@ -43,14 +43,20 @@ class CommentDetails extends Component {
 
   state = {
     isEditingComment: false,
-    editComment :{},
+   // editComment :{},
+    comment: {},
     post: {}
   }
 
    toggleEditComment = () => {
-    this.setState({
-        isEditingComment: !this.state.isEditingComment
-    })
+      console.log("in toggleEditComment" + this.state.isEditingComment)
+      var shouldEditComment = this.state.isEditingComment ? false : true
+      console.log("shouldEditComment : "+ shouldEditComment)
+      this.setState({ isEditingComment: shouldEditComment})
+      console.log("edit comment" + this.state.isEditingComment + JSON.stringify(this.state.editComment))
+      if (shouldEditComment){
+        this.props.actions.setActiveComment(this.props.comment)
+      }
    }
 
   upVoteComment = () => {
@@ -71,19 +77,20 @@ class CommentDetails extends Component {
     post.commentCount -= 1
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.setState({post: this.props.post})
+    console.log("now displaying" + JSON.stringify(this.props.comment))
     this.setState({comment: this.props.comment})
   }
 
   render(){
-    const { comment, props } = this.props
+    const { comment, activeComment,  props } = this.props
     const createdAt = formatDate(comment.timestamp)
 
     return(
       <div>
-        {this.state.isEditingComment && (
-            <EditComment comment={comment} {...props} />
+        {this.state.isEditingComment &&(
+            <EditComment {...props} />
         )}
         {!this.state.isEditingComment && (
         <div >
@@ -130,7 +137,7 @@ function mapStateToProps (state, ownProps){
   return {
     post :state.postsReducer.post,
     comments : state.commentsReducer.comments,
-
+    activeComment : state.commentsReducer.activeComment,
   }
 }
 

@@ -25,7 +25,7 @@ function categoriesReducer(state= initiaCategoriesState, action){
 
 
 const initiaCategoriesState = {
-  categories : []
+  categories : [],
 }
 
 export default categoriesReducer

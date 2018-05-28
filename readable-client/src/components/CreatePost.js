@@ -102,8 +102,9 @@ class CreatePost extends Component {
                     multiline
                     fullWidth
                     rows="10"
-                    theme={theme}>
-                  </PostText>
+                    theme={theme}
+                     />
+
                   <br/>
                   <Button
                     type='raised'

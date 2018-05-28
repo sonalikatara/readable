@@ -21,10 +21,7 @@ const Flexrow = styled.div`
 const Flexcol2 = styled.div`
    width: 50%;
   `
-const Flexcol2Right = styled.div`
-   width: 50%;
-   text-align: right;
-`
+
 const Flexcol3 = styled.div`
    width: 33%;
    padding-top:0px;
@@ -33,7 +30,6 @@ const Flexcol3Right = styled.div`
    width: 33%;
    text-align: right;
 `
-
 const CommentBody =styled(Typography)`
 &&{
   margin:4px 0px;

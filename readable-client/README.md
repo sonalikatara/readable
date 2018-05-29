@@ -72,3 +72,7 @@ identical to the default view, but filtered to only include posts with the selec
 ### Post/Comment UI
 
 Posts and comments, in all views where they are displayed, should display their current score and should have controls to increment or decrement the voteScore for the object. Posts should display the number of comments associated with the post.
+
+## License
+
+The contents of this repository are covered under the [MIT License](LICENSE).

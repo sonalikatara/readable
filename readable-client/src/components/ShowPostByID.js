@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
 import { withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import * as postActions from '../actions/PostActions'
 
 const Container = styled(Grid)`
@@ -28,12 +29,16 @@ class ShowPostByID extends Component {
 
   render(){
       const { post, showPostID, ...rest }  = this.props
-
       return(
-        <Container>
-          <PostDetails post={post} postID={showPostID} {...rest} />
-         <AllComments postID={showPostID}/>
-        </Container>
+         post.timestamp ?
+          <Container>
+            <PostDetails post={post} postID={showPostID} {...rest} />
+            <AllComments postID={showPostID}/>
+          </Container>
+         : <div><br/>
+              <h3>No Post found </h3>
+              <center><Link to="/">Return to Home Page</Link></center>
+           </div>
       )
   }
 }

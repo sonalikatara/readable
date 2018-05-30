@@ -12,7 +12,9 @@ import styled from 'styled-components'
 import {formatDate} from '../utils/getDateString'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as actions from '../actions/PostActions'
+import * as postActions from '../actions/PostActions'
+import * as commentActions from '../actions/CommentActions'
+import { withRouter } from 'react-router-dom'
 
 const Flexrow = styled.div`
   display: flex;
@@ -52,24 +54,25 @@ class PostDetails extends Component{
   upVotePost = () => {
     var {post} = this.props
     post.voteScore += 1;
-    this.props.actions.editPost(post)
+    this.props.actions.postActions.editPost(post)
   }
 
   downVotePost = () => {
     var {post} = this.props
     post.voteScore -= 1;
-    this.props.actions.editPost(post)
+    this.props.actions.postActions.editPost(post)
   }
 
   removePost = () => {
     var {post} = this.props
-    this.props.actions.deletePostById(post.id)
+    this.props.actions.commentActions.deleteCommentsForPost(post.id)
+    this.props.actions.postActions.deletePostById(post.id)
+    this.props.history.push('/')
   }
 
     render(){
       const { post} = this.props
       const createdAt = formatDate(post.timestamp)
-
         return(
             <span>
             <PostPaper  elevation={3} >
@@ -126,8 +129,12 @@ function mapStateToProps (state, ownProps){
 
  function mapDispatchToProps(dispatch) {
    return {
-      actions: bindActionCreators(actions, dispatch)
+     actions: {
+          postActions: bindActionCreators(postActions, dispatch),
+          commentActions: bindActionCreators(commentActions, dispatch)
+     }
+
     }
  }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetails)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PostDetails))

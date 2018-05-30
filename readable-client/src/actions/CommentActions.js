@@ -1,5 +1,5 @@
 import * as PostsAPI from "../PostsAPI"
-import {  RECEIVE_COMMENTS,  EDIT_COMMENT, DELETE_COMMENT, SET_ACTIVE_COMMENT, CLEAR_ACTIVE_COMMENT, ADD_NEW_COMMENT} from "./types"
+import {  RECEIVE_COMMENTS,  EDIT_COMMENT, DELETE_COMMENT, SET_ACTIVE_COMMENT, CLEAR_ACTIVE_COMMENT, ADD_NEW_COMMENT, DELETE_COMMENTS_FOR_POSTID} from "./types"
 
 export const receiveComments = comments => ({
   type: RECEIVE_COMMENTS,
@@ -29,6 +29,11 @@ export const clearActiveComment = activeComment => ({
 export const commentCreated = comment => ({
   type: ADD_NEW_COMMENT,
   comment
+})
+
+export const deleteCommentsForPostId = postId => ({
+  type: DELETE_COMMENTS_FOR_POSTID,
+  postId
 })
 
 export const  fetchPostComments  = (postID) => dispatch => (
@@ -62,6 +67,21 @@ export const addNewComment = (comment) => dispatch =>(
   PostsAPI
   .createComment(comment)
   .then((comment) => dispatch(commentCreated(comment)))
+  .catch(error => {
+    throw(error)
+  })
+)
+
+export const deleteCommentsForPost = (postId) => dispatch => (
+  PostsAPI.getPostComments(postId)
+  .then((comments) => {
+    comments.map((comment) => {
+         dispatch(deleteCommentById(comment.id))
+         return comment.id
+        }
+  )}
+  )
+  .then((postId)=> dispatch(deleteCommentsForPostId(postId)))
   .catch(error => {
     throw(error)
   })

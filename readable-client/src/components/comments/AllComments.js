@@ -57,7 +57,6 @@ class AllComments extends Component {
     comments.sort((a, b) => {
       return (new Date(a.timestamp) < new Date(b.timestamp))
     })
-    console.log("this.props.activeComment.author : " + this.props.activeComment.author)
 
     return(
       <CommentPaper>

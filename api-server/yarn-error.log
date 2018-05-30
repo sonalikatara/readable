@@ -1,0 +1,59 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js start
+
+PATH: 
+  /Users/sonali/.rbenv/shims:/Library/Frameworks/Python.framework/Versions/3.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/sonali/.rvm/bin
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  9.11.1
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "reddit-clone-server",
+    "version": "0.0.1",
+    "description": "A server for the Udacity Reddit Clone project for ReactND",
+    "main": "index.js",
+    "keywords": [
+      "udacity",
+      "redux",
+      "readable",
+      "react"
+    ],
+    "author": "David Harris",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.17.1",
+      "clone": "^2.1.1",
+      "cors": "^2.8.3",
+      "dotenv": "^4.0.0",
+      "express": "^4.15.2",
+      "redux-thunk": "^2.2.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c node server.js
+  Directory: /Users/sonali/webProjects/Udacity-React/readable/reactnd-project-readable-starter/api-server
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:180:13)
+      at maybeClose (internal/child_process.js:936:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)

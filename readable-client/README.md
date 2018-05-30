@@ -75,4 +75,4 @@ Posts and comments, in all views where they are displayed, should display their 
 
 ## License
 
-The contents of this repository are covered under the [MIT License](LICENSE).
+The contents of this repository are covered under the MIT License.

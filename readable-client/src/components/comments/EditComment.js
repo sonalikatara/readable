@@ -48,8 +48,9 @@ class EditComment extends Component {
               author: values.newAuthor,
               parentId: this.props.post.id
             }
+            const {post} = this.props
             this.props.actions.addNewComment(addComment).then(()=>{
-              this.props.history.push('/posts/'+this.props.post.id)
+              this.props.history.push('/post/'+post.category+'/'+post.id)
             })
         }
         else {

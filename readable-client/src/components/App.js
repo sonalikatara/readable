@@ -24,7 +24,7 @@ class App extends Component {
         <Route exact path="/Category/:showcategory" render = { props => (
                       <Home {...props}  />
                     )} />
-         <Route exact path="/Posts/:showPostID" render = { props => (
+         <Route exact path="/post/:showPostCategory/:showPostID" render = { props => (
                       <ShowPostByID {...props}  />
                     )} />
          <Route exact path="/EditPost/:showPostID" render = { props => (

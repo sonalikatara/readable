@@ -66,11 +66,6 @@ class PostDetails extends Component{
     this.props.actions.deletePostById(post.id)
   }
 
-  componentDidMount(){
-    this.setState({post: this.props.post})
-    this.setState({comments: this.props.comments})
-  }
-
     render(){
       const { post} = this.props
       const createdAt = formatDate(post.timestamp)
@@ -87,7 +82,7 @@ class PostDetails extends Component{
               </Flexrow>
               <div>
               <Typography variant="subheading" color="primary" align="left">
-                <Link to={"/posts/"+post.id}> {post.title} </Link>
+                <Link to={"/post/"+post.category+"/"+post.id}> {post.title} </Link>
               </Typography>
               </div>
               <Typography variant="caption" align="left" color="textSecondary" gutterBottom>by <b>{post.author}</b></Typography>

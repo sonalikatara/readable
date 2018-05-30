@@ -5,7 +5,8 @@ import AllComments from './comments/AllComments'
 import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
 import Grid from '@material-ui/core/Grid'
-import * as actions from '../actions/PostActions'
+import { withRouter } from 'react-router-dom'
+import * as postActions from '../actions/PostActions'
 
 const Container = styled(Grid)`
 && {
@@ -21,11 +22,13 @@ class ShowPostByID extends Component {
 
   componentWillMount(){
     var {showPostID} = this.props
-    this.setState({ post : this.props.actions.fetchPostById(showPostID)})
+    var post = this.props.actions.fetchPostById(showPostID)
+    this.setState({ post : post})
   }
 
   render(){
       const { post, showPostID, ...rest }  = this.props
+
       return(
         <Container>
           <PostDetails post={post} postID={showPostID} {...rest} />
@@ -39,14 +42,12 @@ function mapStateToProp(state, ownProps){
    return{
      post : state.postsReducer.post,
      comments : state.commentsReducer.comments,
-     showPostID: ownProps.match.params.showPostID
+     showPostID: ownProps.match.params.showPostID,
    }
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-     actions: bindActionCreators(actions, dispatch)
-   }
+  return { actions: bindActionCreators(postActions, dispatch) }
 }
 
-export default connect(mapStateToProp, mapDispatchToProps)(ShowPostByID)
+export default connect(mapStateToProp, mapDispatchToProps)(withRouter(ShowPostByID))

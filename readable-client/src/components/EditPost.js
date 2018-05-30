@@ -49,14 +49,12 @@ class EditPost extends Component {
 
   componentWillMount(){
     var {showPostID} = this.props
-    //console.log(showPostID)
     this.setState( {post : this.props.actions.fetchPostById(showPostID)})
   }
 
   updatePost = (e,post) => {
         e.preventDefault()
         const values = serializeForm(e.target, {hash: true})
-        console.log("values = " + JSON.stringify(values))
         const editedPost = {
                           id: post.id,
                           title: values.newTitle,
@@ -91,7 +89,8 @@ class EditPost extends Component {
 
     updateCategory = (e) => {
       var {post} = this.props
-      post.category = e.target.value
+      var newCategory = e.target.value
+      post.category = newCategory
       this.setState({post})
     }
 
@@ -156,7 +155,6 @@ class EditPost extends Component {
                     EDIT POST
                   </Button>
               </PostDetailsForm>
-
         )
     }
 }
@@ -165,7 +163,7 @@ function mapStateToProps (state, ownProps){
   return {
     post : state.postsReducer.post,
     showPostID: ownProps.match.params.showPostID,
-    categories: state.categoriesReducer.categories
+    categories: state.categoriesReducer.categories,
   }
  }
 
